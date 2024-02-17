@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SproutList</title>
+    <link rel="stylesheet" href="your_styles.css"> 
+</head>
+<body>
+    <h1>My Plants</h1>
+    <ul>
+        {% for plant in plants %}
+            <li>{{ plant.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Watering Tasks</h2>
+    <ul>
+        {% for todo in todos %}
+        <li>{{ todo.plant }} - {{ todo.task_type }}</li>
+        {% endfor %}
+    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Plant Name</th>
+                <th>Species</th> 
+                <th>Watering Interval</th>  <th>Last Watered</th>  </tr>
+        </thead>
+
+        <tbody>
+            {% for plant in plants %}
+                <tr>
+                    <td>{{ plant.name }}</td>
+                    <td>{{ plant.species }}</td>
+                    <td>{{ plant.watering_interval }} days</td>
+                    <td>{{ plant.last_watered }}</td>
+                    <td><a href="{% url 'edit_plant' plant.id %}">Edit</a></td> 
+                    <td><a href="{% url 'confirm_delete' plant.id %}">Delete</a></td> 
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

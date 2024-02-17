@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a New Plant</title> 
+</head>
+<body>
+    <h1>Add a Plant</h1>
+
+    <div>
+        <label for="id_description">Description:</label>
+        {{ form.description }} 
+    </div>
+    <div>
+        <label for="id_light_requirements">Light Requirements:</label>
+        {{ form.light_requirements }}
+    </div>
+    <div>
+        <label for="id_image">Image:</label>
+        {{ form.image }}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}  
+        {{ form.as_p }} 
+        <button type="submit">Add Plant</button>
+    </form>
+
+
+</body>
+</html>
