@@ -12,12 +12,6 @@
         {% endfor %}
     </ul>
 
-    <h2>Watering Tasks</h2>
-    <ul>
-        {% for todo in todos %}
-        <li>{{ todo.plant }} - {{ todo.task_type }}</li>
-        {% endfor %}
-    </ul>
 
     <table>
         <thead>
@@ -40,6 +34,20 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <div class="pagination"> 
+        {% if page_obj.has_previous %} 
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a> 
+        {% endif %}
+ 
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+ 
+        {% if page_obj.has_next %}
+           <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
 
 </body>
 </html>

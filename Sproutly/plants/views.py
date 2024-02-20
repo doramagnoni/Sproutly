@@ -1,16 +1,20 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, redirect
+from django.core.paginator import Paginator
 from .models import Plant, ToDo
 from .forms import PlantForm 
 
 
 # Create your views here.
 
-def plant_list(request):
-    plants = Plant.objects.all()
-    todos = ToDo.objects.filter(completed=False)
-    return render(request, 'plants/plant_list.html', {'plants': plants, 'todos': todos})
+def plant_list_view(request):
+    plant_list = Plant.objects.all()
+    paginator = Paginator(plant_list, 25)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj}  
+    return render(request, 'plants/plant_list.html', context)
 
 def add_plant(request):
     if request.method == 'POST':  
@@ -41,10 +45,13 @@ def confirm_delete(request, plant_id):
     plant = get_object_or_404(Plant, pk=plant_id)
     return render(request, 'plants/confirm_delete.html', {'plant': plant})
 
-def add_plant(request):
+def add_plant_image_handling(request): 
     if request.method == 'POST':
         form = PlantForm(request.POST, request.FILES) 
         if form.is_valid():
             new_plant = form.save()  
             # Placeholder! 
             return redirect('plant_list')  
+        
+def home_view(request):
+    return render(request, 'index.html') 

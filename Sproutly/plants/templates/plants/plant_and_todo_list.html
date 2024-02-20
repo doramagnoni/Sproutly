@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plants and To-Dos</title>
+</head>
+<body>
+    <h1>My Plant Care Overview</h1>
+
+    {% for plant in page_obj %}
+        <h2>{{ plant.name }} ({{ plant.species }})</h2>
+        <ul> 
+            {% for todo in todos %}
+                {% if todo.plant == plant %} 
+                    <li>{{ todo.task_type }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    </body>
+</html>
