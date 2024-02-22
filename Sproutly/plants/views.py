@@ -55,3 +55,6 @@ def add_plant_image_handling(request):
         
 def home_view(request):
     return render(request, 'index.html') 
+
+def plant_and_todo_list(request):
+    return render(request, 'index.html') 
