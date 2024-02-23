@@ -54,7 +54,7 @@ def add_plant_image_handling(request):
             return redirect('plant_list')  
         
 def home_view(request):
-    return render(request, 'index.html') 
+    return render(request, 'plants/index.html') 
 
 def plant_and_todo_list(request):
     return render(request, 'index.html') 

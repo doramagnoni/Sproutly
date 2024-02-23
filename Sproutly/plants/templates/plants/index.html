@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>SproutList</title>
-    <link rel="stylesheet" href="your_styles.css"> 
-</head>
-<body>
-    <div class="plants">
-        {% include 'plants/plant_list_data.html' %} 
-    </div>
+{% extends 'base.html' %}
 
-   
-</body>
-</html>
+{% block title %}Sproutly Home{% endblock %}
+
+{% block hero_content %}
+       <h1>Sproutly</h1>
+       <p>Where Your Plant Journey Begins</p>
+       <p>Welcome to your personal greenhouse, budding plant parent! This is where the magic starts, where
+        seeds transform into thriving companions, and tiny leaves unfurl into verdant adventures. Let's
+        document your green thumb journey together, every step of the way!</p>
+{% endblock %}
+
+{% block features_content %}
+    <div class="col-md-4">
+      <i class="bi bi-kanban fs-1"></i>
+      <h4>Planting the First Seed:</h4>
+      <p>What will you nurture today? Is it a majestic sunflower reaching for the sun, a delicate orchid
+        with fragrant blooms, or a spiky cactus guarding its secrets? Tell us about your new green
+        friend, its species, variety, and the date it joined your botanical family.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-people fs-1"></i>
+        <h4>Witnessing Growth:</h4>
+        <p>Capture the magic moments! Share observations, measurements, and photos as your plant sprouts,
+            stretches, and reaches for the light. Did its leaves get bigger? Did it develop new buds? Track
+            every milestone, creating a visual diary of your plant's unique journey.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-bar-chart fs-1"></i>
+        <h4>Unveiling the Secrets:</h4>
+        <p>Care tips at your fingertips! Based on your plant's type, Sproutly offers advice on watering, sun
+            exposure, and more. Let your green knowledge blossom with our guidance right within your pocket
+            greenhouse.</p>
+    </div>
+{% endblock %}
