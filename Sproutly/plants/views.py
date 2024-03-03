@@ -58,3 +58,6 @@ def home_view(request):
 
 def plant_and_todo_list(request):
     return render(request, 'index.html') 
+
+def about_view(request):
+    return render(request, 'plants/about.html')
