@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from plants import views
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('plants/', views.plant_list_view, name='plant_list'),
     path('about/', views.about_view, name='about'), 
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('signup/', views.signup_view, name='signup'),
 
-   
 ]

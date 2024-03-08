@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.core.paginator import Paginator
 from .models import Plant, ToDo
 from .forms import PlantForm 
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm 
 
 
 # Create your views here.
@@ -61,3 +63,14 @@ def plant_and_todo_list(request):
 
 def about_view(request):
     return render(request, 'plants/about.html')
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()  
+            login(request, user)  
+            return redirect('index')  
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
