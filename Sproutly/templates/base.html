@@ -1,4 +1,5 @@
-{% load static %}  <!DOCTYPE html>
+{% load static %}  
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -14,7 +15,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
     <div class="container">
-      <a class="navbar-brand" href="index.html">Sproutly</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Sproutly</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'about' %}">About</a>
@@ -31,7 +32,7 @@
             <a class="nav-link" href="plant-guide.html">Plant Guide </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">Sign up</a>
+            <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
           </li>
         </ul>
       </div>
@@ -42,19 +43,23 @@
     <section class="hero d-flex align-items-center">
       <div class="container">
         <div class="row">
-          {% block hero_content %}{% endblock %} 
+          {% block hero_content %} {% endblock %} 
         </div>
       </div>
     </section>
 
     <section class="features my-5">
       <div class="container">
-        <h2>Key Features</h2>
+        {% if block.super %} 
+           <h2>Key Features</h2> 
+        {% endif %} 
         <div class="row">    
-            {% block features_content %}{% endblock %} 
+            {% block features_content %} {% endblock %} 
         </div>
       </div>
     </section>
+
+  {% block content %}{% endblock %}
 
     <section class="cta text-center my-5">
         <div class="container">
@@ -63,7 +68,6 @@
         </div>
      </section>
   
-
   </main>
 
   <footer class="footer text-center"> 
