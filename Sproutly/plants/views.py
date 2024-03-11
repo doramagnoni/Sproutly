@@ -74,3 +74,6 @@ def signup_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+def plant_guide(request):
+    return render(request, 'plants/plant-guide.html')

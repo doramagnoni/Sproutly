@@ -1,35 +1,30 @@
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a New Plant</title> 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'assets/style.css' %}"> 
-</head>
-<body>
-    <h1>Add a Plant</h1>
+{% block content %}  
+<div class="container mt-5" id="add-plant-form"> 
+    <h1 class="text-center">Add a Plant</h1> 
 
-    <div>
-        <label for="id_description">Description:</label>
-        {{ form.description }} 
-    </div>
-    <div>
-        <label for="id_light_requirements">Light Requirements:</label>
-        {{ form.light_requirements }}
-    </div>
-    <div>
-        <label for="id_image">Image:</label>
-        {{ form.image }}
-    </div>
+    <form method="post" class="form"> 
+        {% csrf_token %} 
 
-    <form method="post">
-        {% csrf_token %}  
-        {{ form.as_p }} 
-        <button type="submit">Add Plant</button>
+        <div class="form-group mb-3"> 
+            <label for="id_description" class="form-label">Description:</label> 
+            {{ form.description }} 
+        </div>
+
+        <div class="form-group mb-3"> 
+            <label for="id_light_requirements" class="form-label">Light Requirements:</label>
+            {{ form.light_requirements }}
+        </div>
+
+        <div class="form-group mb-3"> 
+            <label for="id_image" class="form-label">Image:</label>
+            {{ form.image }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Plant</button>
     </form>
+</div>
 
+{% endblock %} 
 
-</body>
-</html>

@@ -3,7 +3,7 @@
 {% block content %}
 <h2 class="text-center">Join the Sproutly Community</h2>
 
-<form method="POST" action="{% url 'signup' %}">
+<form method="POST" action="{% url 'signup' %}" class="signup-form">
   {% csrf_token %}
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
