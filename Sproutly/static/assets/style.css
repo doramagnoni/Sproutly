@@ -195,6 +195,36 @@ plant-profile {
 
 /* Add-plant-form */
 
+.form { 
+    padding: 20px; 
+    display: grid; 
+    gap: 20px; 
+    
+}
+.form-group { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 10px;  
+
+}
+
+.form-group label {
+    grid-row: 1; 
+}
 
 
+#save-plant-button {
+    max-width: 400px; 
+    margin: 0 auto; 
+}
 
+/* Plant-list */
+
+.table-striped  {
+    color: #FCF8FF;
+}
+
+
+table tbody td {
+    color: #FCF8FF !important; 
+}

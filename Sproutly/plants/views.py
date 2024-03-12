@@ -26,9 +26,6 @@ def delete_plant(request, plant_id):
     plant.delete()  
     return redirect('plant_list')
 
-def confirm_delete(request, plant_id):
-    plant = get_object_or_404(Plant, pk=plant_id)
-    return render(request, 'plants/confirm_delete.html', {'plant': plant})
 
 def add_plant_image_handling(request): 
     if request.method == 'POST':
