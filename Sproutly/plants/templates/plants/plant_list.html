@@ -1,53 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>SproutList</title>
-    <link rel="stylesheet" href="your_styles.css"> 
-</head>
-<body>
-    <h1>My Plants</h1>
-    <ul>
-        {% for plant in plants %}
-            <li>{{ plant.name }}</li>
-        {% endfor %}
-    </ul>
+{% extends 'base.html' %}
 
+{% block content %}
+    <div class="container mt-5"> 
+        <h1>My Plants</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Plant Name</th>
-                <th>Species</th> 
-                <th>Watering Interval</th>  <th>Last Watered</th>  </tr>
-        </thead>
-
-        <tbody>
-            {% for plant in plants %}
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>{{ plant.name }}</td>
-                    <td>{{ plant.species }}</td>
-                    <td>{{ plant.watering_interval }} days</td>
-                    <td>{{ plant.last_watered }}</td>
-                    <td><a href="{% url 'edit_plant' plant.id %}">Edit</a></td> 
-                    <td><a href="{% url 'confirm_delete' plant.id %}">Delete</a></td> 
+                    <th>Plant Name</th>
+                    <th>Species</th> 
+                    <th>Watering Interval</th>
+                    <th>Last Watered</th>  
+                    <th></th> 
+                    <th></th> 
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
 
-    <div class="pagination"> 
-        {% if page_obj.has_previous %} 
-            <a href="?page={{ page_obj.previous_page_number }}">Previous</a> 
-        {% endif %}
- 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-        </span>
- 
-        {% if page_obj.has_next %}
-           <a href="?page={{ page_obj.next_page_number }}">Next</a>
-        {% endif %}
+            <tbody>
+                {% for plant in page_obj %}
+                    <tr>
+                        <td>{{ plant.name }}</td>
+                        <td>{{ plant.species }}</td>
+                        <td>{{ plant.watering_interval }} days</td>
+                        <td>{{ plant.last_watered }}</td>
+                        <td><a href="{% url 'edit_plant' plant.id %}" class="btn btn-primary">Edit</a></td> 
+                        <td><a href="{% url 'confirm_delete' plant.id %}" class="btn btn-danger">Delete</a></td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination"> 
+            {% if page_obj.has_previous %} 
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a> 
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </div>
     </div>
-
-</body>
-</html>
+{% endblock content %}

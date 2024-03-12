@@ -6,6 +6,8 @@ from .models import Plant, ToDo
 from .forms import PlantForm 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm 
+from django.views.generic import CreateView, UpdateView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -18,25 +20,6 @@ def plant_list_view(request):
     context = {'page_obj': page_obj}  
     return render(request, 'plants/plant_list.html', context)
 
-def add_plant(request):
-    if request.method == 'POST':  
-        form = PlantForm(request.POST)
-        if form.is_valid():
-            form.save()  
-            return redirect('plant_list')  
-    else: 
-        form = PlantForm() 
-    return render(request, 'plants/add_plant.html', {'form': form})
-
-def edit_plant(request, plant_id):
-    plant = get_object_or_404(Plant, pk=plant_id) 
-    if request.method == 'POST':
-        form = PlantForm(request.POST, instance=plant)  
-        form.save()  
-        return redirect('plant_list')
-    else:
-        form = PlantForm(instance=plant)
-    return render(request, 'plants/edit_plant.html', {'form': form, 'plant': plant})
 
 def delete_plant(request, plant_id):
     plant = get_object_or_404(Plant, pk=plant_id) 
@@ -77,3 +60,15 @@ def signup_view(request):
 
 def plant_guide(request):
     return render(request, 'plants/plant-guide.html')
+
+class AddPlantView(CreateView):
+    model = Plant
+    form_class = PlantForm
+    template_name = 'plants/plant_form.html' 
+    success_url = reverse_lazy('plant_list') 
+
+class EditPlantView(UpdateView):
+    model = Plant
+    form_class = PlantForm
+    template_name = 'plants/plant_form.html' 
+    success_url = reverse_lazy('plant_list') 

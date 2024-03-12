@@ -21,3 +21,5 @@ class ToDo(models.Model):
     task_type = models.CharField(max_length=20, choices=[('WATER', 'Water'), ('FERTILIZE', 'Fertilize')])
     due_date = models.DateField()
     completed = models.BooleanField(null=False, blank=False, default=False)
+    def __str__(self):
+      return self.task_type 
