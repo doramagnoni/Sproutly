@@ -1,5 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900);
+
 body {
-    color: #FCF8FF;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    color: #f8f9fa;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -29,11 +33,12 @@ body {
 }
 
 main {
-    background-color: rgba(36, 83, 60, 0.647);
+    background-color: rgba(42, 71, 57, 0.415);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     margin: 30px;
     padding: 20px;
-    border-radius: 3%;
-    margin-top: 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
 }
 
 /* Index */
@@ -79,19 +84,22 @@ h1 h2 h4 {
 }
 
 .btn {
-    background-color: #C031B5;
+    background-color: #ee019c;
     color: #FCF8FF;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.283);
+    letter-spacing: 2px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
-    
+
 }
 
 .btn:hover {
     background-color: #A0238D;
+    border-color: transparent; 
 }
 
 /* Footer */
@@ -182,51 +190,10 @@ plant-profile {
 .signup-form { 
     max-width: 500px; 
     margin: 0 auto; 
+
 } 
 
 /* Add-plant-form */
-
-#add-plant-form .form { 
-    padding: 20px;
-    border-radius: 8px;
-}
-
-#add-plant-form .form-group {
-    margin-bottom: 15px;
-}
-
-#add-plant-form input[type="text"], 
-#add-plant-form input[type="file"] {
-    width: 100%; 
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#add-plant-form .form-description-container { 
-    position: relative; 
-}
-
-#add-plant-form .form-label {
-    position: absolute; 
-    top: 5px; 
-    left: 50%;
-    transform: translateX(-50%); 
-    background: white; 
-    padding: 0 5px; 
-    z-index: 1; 
-}
-
-#add-plant-form textarea {  
-    margin-top: 25px; 
-} 
-
-#add-plant-form input[type="text"],
-#add-plant-form input[type="file"] {
-    width: 80%; 
-    max-width: 500px; 
-    margin: 0 auto; 
-}
 
 
 
