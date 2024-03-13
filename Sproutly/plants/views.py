@@ -8,7 +8,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm 
 from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
-
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -39,7 +39,22 @@ def home_view(request):
     return render(request, 'plants/index.html') 
 
 def plant_and_todo_list(request):
-    return render(request, 'index.html') 
+    plants = Plant.objects.filter(user=request.user) 
+    todos = ToDo.objects.filter(plant__in=plants)
+    context = {
+        'page_obj': plants,
+        'todos': todos 
+    }
+    return render(request, 'plants/todo_template.html', context) 
+
+def mark_todo_complete(request, todo_id):
+    if request.method == "POST":
+        todo = get_object_or_404(ToDo, pk=todo_id) 
+        todo.completed = not todo.completed 
+        todo.save()
+        return JsonResponse({'success': True}) 
+    else:
+        return redirect('plant_and_todo_list')
 
 def about_view(request):
     return render(request, 'plants/about.html')

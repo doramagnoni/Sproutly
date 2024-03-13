@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('plants/new', AddPlantView.as_view(), name='add_plant'),
     path('plants/todos', views.plant_and_todo_list, name='plant_and_todo_list'),
+    path('todos/complete/<int:todo_id>', views.mark_todo_complete, name='mark_todo_complete'),
     path('plants/<int:pk>/edit', EditPlantView.as_view(), name='edit_plant'), 
     path('plants/<int:plant_id>/delete', views.delete_plant, name='delete_plant'), 
     path('', views.home_view, name='home'),

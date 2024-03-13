@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div class="container mt-5"> 
+    <h1 class="display-4">My Plant Care Overview</h1>
+
+    {% for plant in page_obj %}
+        <h2 class="h3">{{ plant.name }} ({{ plant.species }})</h2>
+        <ul class="list-group"> 
+            {% for todo in todos %}
+                {% if todo.plant == plant %} 
+                <li class="list-group-item">
+                    <input type="checkbox" id="todo_{{ todo.id }}" {% if todo.completed %}checked{% endif %} onclick="markComplete(this, {{ todo.id }})"> 
+                    <label for="todo_{{ todo.id }}">{{ todo.task_type }}</label>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div> 
+
+{% endblock content %} 
+
+{% block scripts %}
+<script>
+    function markComplete(checkbox, todoId) {
+        fetch('/todos/complete/' + todoId, { 
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}' 
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                
+                alert('Error updating task status'); 
+            } 
+        })
+        .catch(error => {
+            console.error('Error:', error); 
+        });
+    }
+    </script>     
+{% endblock scripts %}  

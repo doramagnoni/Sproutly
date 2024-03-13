@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User 
+from django.conf import settings
 
 # Create your models here.
 class Plant(models.Model):
@@ -11,6 +13,7 @@ class Plant(models.Model):
     fertilization_interval = models.IntegerField(help_text="Days between fertilization")
     last_fertilized = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to='plant_images', default='plant_images/default_plant.jpg')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1) 
     
     def __str__(self):
       return self.name 
