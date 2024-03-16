@@ -67,6 +67,8 @@ main {
     max-width: 1200px;
     margin-bottom: 50px;
     margin-top: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
 }
 
 .features {
@@ -169,6 +171,12 @@ footer {
 
 /* Plant Guide */
 
+.page-title {
+    text-align: center; 
+    margin-top: 10px;
+    margin-bottom: 20px; 
+}
+
 plant-profile {
     margin: 20px 0; 
 }
@@ -186,6 +194,11 @@ plant-profile {
 .care-guide li {
     margin-bottom: 5px; 
 }
+.col-md-6 .img-fluid { 
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    margin-top: 90px;
+} 
 
 /* Sign-up */
 
