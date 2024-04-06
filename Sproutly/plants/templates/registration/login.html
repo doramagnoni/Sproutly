@@ -11,7 +11,7 @@
     {% endelement %}
     <p>
         {% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+    <a href="{{% url 'account_signup' %}}">sign up</a> first.{% endblocktrans %}
     </p>
     {% url 'account_login' as login_url %}
     {% element form form=form method="post" action=login_url tags="entrance,login" %}
@@ -34,4 +34,20 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+
+    <style>
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 {% endblock content %}
