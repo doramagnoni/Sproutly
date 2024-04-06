@@ -1,6 +1,7 @@
-{% load static %}  
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,14 @@
   <link rel="stylesheet" href="{% static 'assets/style.css' %}">
   {% if in_admin %}
   <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
-{% endif %}
+  {% endif %}
   <script src="https://kit.fontawesome.com/3b20d96fa9.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-<title>{% block title %}Sproutly - Grow Your Plants{% endblock %}</title> 
+  <title>{% block title %}Sproutly - Grow Your Plants{% endblock %}</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="{% url 'home' %}">Sproutly</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -29,70 +30,84 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'about' %}">About</a>
-        </li>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'plant-guide' %}">Plant Guide </a>
           </li>
           {% if user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
-      </li>
-      {% else %}
-      <li class="nav-item">
-        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page" href="{% url 'account_signup' %}">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
-      </li>
-      {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'plant_and_todo_list' %}">My To-Do List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_plant' %}">Add New Plant</a>
+          </li>
+          {% endif %}
+
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
+              href="{% url 'account_logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+              href="{% url 'account_signup' %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+              href="{% url 'account_login' %}">Login</a>
+          </li>
+          {% endif %}
+
         </ul>
       </div>
     </div>
   </nav>
 
+
   <main>
     <section class="hero d-flex align-items-center">
       <div class="container">
         <div class="row">
-          {% block hero_content %} {% endblock %} 
+          {% block hero_content %} {% endblock %}
         </div>
       </div>
     </section>
 
     <section class="features my-5">
       <div class="container">
-        {% if block.super %} 
-           <h2>Key Features</h2> 
-        {% endif %} 
-        <div class="row">    
-            {% block features_content %} {% endblock %} 
+        {% if block.super %}
+        <h2>Key Features</h2>
+        {% endif %}
+        <div class="row">
+          {% block features_content %} {% endblock %}
         </div>
       </div>
     </section>
 
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
   </main>
 
-  <footer class="footer text-center"> 
+  <footer class="footer text-center">
     <div class="container">
       <p>&copy; 2024 Sproutly. All rights reserved.</p>
       <ul class="social-media-links">
         <li class="inline-link"><a href="#">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
         </li>
         <li class="inline-link">
-            <a href="#">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
+          <a href="#">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
         </li>
         <li class="inline-link">
-            <a href="#">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
+          <a href="#">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
         </li>
-    </ul>
+      </ul>
     </div>
 
   </footer>

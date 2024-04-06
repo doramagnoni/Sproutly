@@ -4,7 +4,13 @@
 
 {% block hero_content %}
 <h1>Sproutly </h1>
+
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p> 
+{% endif %}
+
 <p>Where Your Plant Journey Begins</p>
+
 <p class="hero-p">Welcome to your personal greenhouse, budding plant parent! This is where the magic starts, where seeds
     transform into thriving companions, and tiny leaves unfurl into verdant adventures. Imagine the delicate roots
     reaching deep, the first shoots peeking through the soil, and those tender leaves stretching towards the sun. Let's
