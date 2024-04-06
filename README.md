@@ -1,10 +1,10 @@
-# SproutList 🌿
+# Sproutly 🌿
 
 **Your personal plant care companion for flourishing houseplants.**
 
-## 🌱 Why SproutList?
+## 🌱 Why Sproutly?
 
-Forget messy plant care notes and missed watering schedules!  SproutList is for plant lovers who want to nurture their indoor garden effortlessly. Get organized, receive timely reminders, and see your plant friends thrive.
+Forget messy plant care notes and missed watering schedules! Sproutly is for plant lovers who want to nurture their indoor garden effortlessly. Get organized, receive timely reminders, and see your plant friends thrive.
 
 ## ✨ Core Features
 
@@ -41,6 +41,14 @@ _Open `http://127.0.0.1:8000/` in your web browser to explore your digital garde
 * **As a forgetful plant newbie,** I need clear reminders about when and how to fertilize my plants. 
 * **As a proud plant parent,**  I want to see how my plants change over time, through photos stored with their profiles.  
 
+## 🧪 Testing and Quality Assurance
+
+To ensure Sproutly functions as intended and provides a reliable experience for plant lovers, we employ a mix of automated and manual testing strategies.
+
+* **Automated Tests:** Our test suite covers core functionalities such as plant profile creation, to-do list generation, and successful user signup. This helps us catch potential errors early in the development process.
+* **Manual Testing:** We thoroughly test SproutList across different browsers and devices to ensure a smooth user experience for everyone.
+
+**Test Results:** Our current tests pass successfully, giving us confidence in the stability of Sproutly's core features. We are committed to expanding our test coverage as we add new functionalities.
 
 ## 💚 Future Goals
 
@@ -50,5 +58,5 @@ _Open `http://127.0.0.1:8000/` in your web browser to explore your digital garde
 
 ## 🤝 Contributing
 
-We welcome contributions to SproutList!  Help us build the best plant care tool possible. For guidelines, please see [insert link if you have a CONTRIBUTING.md file or a section]
+We welcome contributions to Sproutly!  Help us build the best plant care tool possible. For guidelines, please see [insert link if you have a CONTRIBUTING.md file or a section]
 
