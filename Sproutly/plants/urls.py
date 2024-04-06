@@ -18,7 +18,5 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('plant-guide/', views.plant_guide, name='plant-guide'),
     path("accounts/", include("allauth.urls")), 
-    path('accounts/signup/', views.signup_view, name='account_signup')
     
-
 ]
