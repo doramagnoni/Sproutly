@@ -4,6 +4,7 @@ from plants import views
 from .views import AddPlantView
 from .views import AddPlantView, EditPlantView  
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('plants/new', AddPlantView.as_view(), name='add_plant'),
@@ -18,5 +19,5 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('plant-guide/', views.plant_guide, name='plant-guide'),
     path("accounts/", include("allauth.urls")), 
-    
+     
 ]
