@@ -39,7 +39,7 @@ def home_view(request):
     return render(request, 'plants/index.html') 
 
 def plant_and_todo_list(request):
-    plants = Plant.objects.filter(user=request.user) 
+    plants = Plant.objects.filter(user_id=request.user.id) 
     todos = ToDo.objects.filter(plant__in=plants)
     context = {
         'page_obj': plants,
@@ -50,7 +50,11 @@ def plant_and_todo_list(request):
 def mark_todo_complete(request, todo_id):
     if request.method == "POST":
         todo = get_object_or_404(ToDo, pk=todo_id) 
-        todo.completed = not todo.completed 
+        todo.completed = not todo.completed
+
+        if todo.completed: 
+            todo.task_type = 'WATERED' if todo.task_type == 'WATER' else 'FERTILIZED'  
+        
         todo.save()
         return JsonResponse({'success': True}) 
     else:
