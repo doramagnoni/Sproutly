@@ -1,1 +1,1 @@
-web: gunicorn sproutly.wsgi:application
+web: gunicorn sproutly.wsgi

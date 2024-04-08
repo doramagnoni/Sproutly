@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-i64#))7qknx#a)fl-(khzn=q401(ta-320&-&t(j9l_dcw-d%y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'sproutly.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
