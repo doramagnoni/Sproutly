@@ -34,7 +34,16 @@ body {
     color: #A0238D;
 }
 
-
+main {
+    background-color: rgba(42, 71, 57, 0.415);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin: 30px;
+    padding: 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    min-height: 100vh;
+    overflow-y: auto; 
+}
 
 /* Index */
 .hero {
@@ -127,11 +136,13 @@ footer {
     margin: 10px;
     font-size: 30px;
     transition: transform 0.3s ease;
+    
 }
 
 .social-media-links .inline-link:hover {
     transform: scale(1.2);
     text-align: center;
+    
 }
 
 .social-media-links li a {
