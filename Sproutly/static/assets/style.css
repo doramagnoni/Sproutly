@@ -34,16 +34,7 @@ body {
     color: #A0238D;
 }
 
-main {
-    background-color: rgba(42, 71, 57, 0.415);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    margin: 30px;
-    padding: 20px;
-    border-radius: 25px;
-    backdrop-filter: blur(10px);
-    min-height: 100vh;
-    overflow-y: auto; 
-}
+
 
 /* Index */
 .hero {
