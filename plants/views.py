@@ -7,10 +7,12 @@ from .forms import PlantForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm 
 from django.views.generic import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 
 # Create your views here.
+
 
 def plant_list_view(request):
     plant_list = Plant.objects.all()
@@ -23,6 +25,8 @@ def plant_list_view(request):
 
 def delete_plant(request, plant_id):
     plant = get_object_or_404(Plant, pk=plant_id) 
+    if plant.user != request.user:  
+        return redirect('access_denied')  
     plant.delete()  
     return redirect('plant_list')
 
@@ -80,14 +84,21 @@ def signup_view(request):
 def plant_guide(request):
     return render(request, 'plants/plant-guide.html')
 
-class AddPlantView(CreateView):
+class AddPlantView(LoginRequiredMixin, CreateView):
     model = Plant
     form_class = PlantForm
     template_name = 'plants/plant_form.html' 
     success_url = reverse_lazy('plant_list') 
 
-class EditPlantView(UpdateView):
+    def form_valid(self, form):
+        form.instance.user = self.request.user  
+        return super().form_valid(form)
+
+class EditPlantView(LoginRequiredMixin, UpdateView):
     model = Plant
     form_class = PlantForm
     template_name = 'plants/plant_form.html' 
     success_url = reverse_lazy('plant_list') 
+
+    def get_queryset(self):
+        return Plant.objects.filter(user=self.request.user) 

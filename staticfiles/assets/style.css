@@ -248,10 +248,14 @@ plant-profile {
     color: #FCF8FF;
 }
 
-
 table tbody td {
     color: #FCF8FF !important; 
+    max-width: 250px; 
+    overflow: hidden;  
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
 }
+
 
 .task-completed {
     text-decoration: line-through; 
