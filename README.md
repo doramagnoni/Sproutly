@@ -47,7 +47,7 @@ Focus on Well-being: A calming color palette and emphasis on successful task com
 
 ## 🌱 User Stories
 
-* **As a busy plant enthusiast,** I want to easily track my watering schedule so my plants stay happy and healthy.
+* **As a busy plant enthusiast,** I want to easily track my watering and fertilization schedule so my plants stay happy and healthy.
 * **As a forgetful plant newbie,** I need clear reminders about when and how to fertilize my plants. 
 * **As a proud plant parent,**  I want to see how my plants change over time, through photos stored with their profiles.  
 
@@ -59,6 +59,13 @@ To ensure Sproutly functions as intended and provides a reliable experience for 
 * **Manual Testing:** We thoroughly test SproutList across different browsers and devices to ensure a smooth user experience for everyone.
 
 **Test Results:** Our current tests pass successfully, giving us confidence in the stability of Sproutly's core features. We are committed to expanding our test coverage as we add new functionalities.
+
+## Development Status
+
+The following features are currently under active development:
+
+* **To-Do List:** Basic task creation functionality is implemented. Due date tracking and reminder features are planned for future updates. 
+```
 
 ## 💚 Future Goals
 

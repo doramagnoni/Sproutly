@@ -1,66 +1,67 @@
 {% extends 'base.html' %}
 
+
+
 {% block content %}
+<div class="under-construction-banner">
+    <p><strong>Note:</strong> This To-Do list feature is still under construction.</p>
+</div> 
 <div class="container mt-5">
     <h1>My Plants To-Do List</h1>
 
-    {% for plant in page_obj %}
-    <h2 class="h3">{{ plant.name }} ({{ plant.species }})</h2>
-    <ul class="list-group">
-
-        {% for todo in todos %}
-        <li class="list-group-item">
-            <button class="task-done-btn" data-task-id="{{ todo.id }}">Done</button>
-
-            <input type="checkbox" id="todo_{{ todo.id }}" {% if todo.completed %}checked disabled{% endif %}>
-            <label for="todo_{{ todo.id }}">{{ todo.task_type }}</label>
-            ...
-        </li>
-        {% endfor %}
-
-    </ul>
+    {% for plant_data in plant_todos %}
+        <h2 class="h3">{{ plant_data.plant.name }} ({{ plant_data.plant.species }})</h2>
+        <p>Number of ToDos for this plant: {{ plant_data.todos.count }}</p> 
+        <ul class="list-group">
+            {% for todo in plant_data.todos %}
+                <li class="list-group-item">
+                    {{ todo.task_type }} 
+                </li>
+            {% empty %}  
+                <li class="list-group-item">No ToDos found for this plant</li> 
+            {% endfor %}
+        </ul>
     {% endfor %}
 </div>
 {% endblock content %}
 
 {% block scripts %}
 <script>
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('task-done-btn')) {
+            const button = event.target;
+            const todoId = button.dataset.taskId;
+            markComplete(button, todoId);
+        }
+    });
 
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('task-done-btn')) {
-        const button = event.target; 
-        const todoId = button.dataset.taskId; 
-        markComplete(button, todoId);
-    }
-});
+    function markComplete(button, todoId) {
+        console.log("Todo ID:", todoId);
 
-function markComplete(button, todoId) { 
-    console.log("Todo ID:", todoId);
-
-    fetch('/todos/complete/' + todoId, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': '{{ csrf_token }}'
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                alert('Error updating task status');
-            } else {                
-                button.disabled = true; 
-                button.textContent = 'Completed'; 
-
-                const label = button.nextElementSibling; 
-                if (label.tagName === 'LABEL') {
-                    label.classList.add('task-completed'); 
-                    console.log('Added task-completed class to label:', label); 
+        fetch('/todos/complete/' + todoId, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
                 }
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-        
-}
+            })
+            .then(response => {
+                if (!response.ok) {
+                    alert('Error updating task status');
+                } else {
+                    button.disabled = true;
+                    button.textContent = 'Completed';
+
+                    const label = button.nextElementSibling;
+                    if (label.tagName === 'LABEL') {
+                        label.classList.add('task-completed');
+                        console.log('Added task-completed class to label:', label);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+    }
 </script>
 {% endblock scripts %}

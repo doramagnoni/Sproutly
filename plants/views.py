@@ -8,6 +8,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm 
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 
@@ -42,14 +43,29 @@ def add_plant_image_handling(request):
 def home_view(request):
     return render(request, 'plants/index.html') 
 
+@login_required
 def plant_and_todo_list(request):
-    plants = Plant.objects.filter(user_id=request.user.id) 
+    plants = Plant.objects.filter(user_id=request.user.id)
     todos = ToDo.objects.filter(plant__in=plants)
+
+    print("All todos:", todos)  # Add this line
+
     context = {
-        'page_obj': plants,
-        'todos': todos 
+        'plant_todos': []
     }
-    return render(request, 'plants/todo_template.html', context) 
+
+    for plant in plants:
+        plant_data = {
+            'plant': plant,
+            'todos': todos.filter(plant=plant)
+        }
+        context['plant_todos'].append(plant_data)
+
+        print(f"Todos for plant {plant}:")  
+        for todo in plant_data['todos']: 
+            print(f"  - Task: {todo.task_type}, Completed: {todo.completed}")  
+
+    return render(request, 'plants/todo_template.html', context)
 
 def mark_todo_complete(request, todo_id):
     if request.method == "POST":
