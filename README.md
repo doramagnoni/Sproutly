@@ -65,6 +65,15 @@ To ensure Sproutly functions as intended and provides a reliable experience for 
 The following features are currently under active development:
 
 * **To-Do List:** Basic task creation functionality is implemented. Due date tracking and reminder features are planned for future updates. 
+
+## Development Challenges
+
+* **Challenge: Incorrect Display of To-Do Tasks Based on Due Dates**
+
+   **Description:** The To-Do list feature within my Sproutly application encountered a problem where tasks were failing to display entirely. This severely undermined the core functionality of the To-Do list as a plant care reminder system.
+
+   **Troubleshooting:** To identify the root of the issue, I followed a systematic debugging proces which is described in details - [label](< development_challenges.txt>)
+
 ```
 
 ## 💚 Future Goals
@@ -77,3 +86,4 @@ The following features are currently under active development:
 
 We welcome contributions to Sproutly!  Help us build the best plant care tool possible. For guidelines, please see [insert link if you have a CONTRIBUTING.md file or a section]
 
+I would like to express my gratitude to my mentor Adegbenga Adeye who helped me extensively to fix numerous problems with my code and supported me very patiently throughout all the stages of the creation of this portfolio.
