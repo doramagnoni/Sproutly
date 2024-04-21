@@ -23,6 +23,9 @@ Forget messy plant care notes and missed watering schedules! Sproutly is for pla
 * Python (3.8 or above)
 * Django (recent version)
 
+## ☁️ Deployment
+Sproutly is live on Heroku! Try it out here: https://sproutly-30d053e33e11.herokuapp.com/
+
 **Step-by-Step:**
 
 1. Clone this repository: `git clone https://github.com/yourusername/SproutList.git`
@@ -34,6 +37,13 @@ Forget messy plant care notes and missed watering schedules! Sproutly is for pla
 5.  Start the SproutList server: `python manage.py runserver`
 
 _Open `http://127.0.0.1:8000/` in your web browser to explore your digital garden!_
+
+## ✨ UX Design Philosophy
+Sproutly aims to provide a  straightforward and enjoyable experience for plant enthusiasts.  Here's how the design focuses on your needs:
+
+Plant Management Made Easy: Adding new plants and setting up watering/fertilizing reminders is designed to be quick and intuitive.
+Clear Task Overview: The to-do list provides a satisfying visual display of your plant care schedule, helping you stay on top of your plants' needs.
+Focus on Well-being: A calming color palette and emphasis on successful task completion aims to make plant care a positive and rewarding part of your routine.
 
 ## 🌱 User Stories
 
