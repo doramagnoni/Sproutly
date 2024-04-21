@@ -253,3 +253,7 @@ table tbody td {
     color: #FCF8FF !important; 
 }
 
+.task-completed {
+    text-decoration: line-through; 
+}
+

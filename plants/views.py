@@ -53,8 +53,11 @@ def mark_todo_complete(request, todo_id):
         todo.completed = not todo.completed
 
         if todo.completed: 
-            todo.task_type = 'WATERED' if todo.task_type == 'WATER' else 'FERTILIZED'  
-        
+            if todo.task_type == 'WATER':
+                todo.task_type = 'WATERED' 
+            elif todo.task_type == 'FERTILIZE':
+                todo.task_type = 'FERTILIZED'
+
         todo.save()
         return JsonResponse({'success': True}) 
     else:

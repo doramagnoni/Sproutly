@@ -9,41 +9,58 @@
     <ul class="list-group">
 
         {% for todo in todos %}
-            <li class="list-group-item">
-                <input type="checkbox" id="todo_123" {% if todo.completed %}checked{% endif %} onclick="markComplete(this, 123)">
+        <li class="list-group-item">
+            <button class="task-done-btn" data-task-id="{{ todo.id }}">Done</button>
 
-                <label for="todo_{{ todo.id }}">{{ todo.task_type }}</label>
-                <span class="due-date">Due: {{ todo.due_date }}</span>
-            </li>
+            <input type="checkbox" id="todo_{{ todo.id }}" {% if todo.completed %}checked disabled{% endif %}>
+            <label for="todo_{{ todo.id }}">{{ todo.task_type }}</label>
+            ...
+        </li>
+        {% endfor %}
 
-            {% endfor %}
     </ul>
     {% endfor %}
 </div>
-{% endblock content %} 
+{% endblock content %}
 
 {% block scripts %}
 <script>
-    function markComplete(checkbox, todoId) {
-        console.log("Todo ID:", todoId);
-        console.log("Checkbox 'checked' before:", checkbox.checked);
 
-        fetch('/todos/complete/' + todoId, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    alert('Error updating task status');
-                } else {
-                    console.log("Checkbox 'checked' after:", checkbox.checked);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('task-done-btn')) {
+        const button = event.target; 
+        const todoId = button.dataset.taskId; 
+        markComplete(button, todoId);
     }
-</script>     
-{% endblock scripts %}  
+});
+
+function markComplete(button, todoId) { 
+    console.log("Todo ID:", todoId);
+
+    fetch('/todos/complete/' + todoId, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                alert('Error updating task status');
+            } else {                
+                button.disabled = true; 
+                button.textContent = 'Completed'; 
+
+                const label = button.nextElementSibling; 
+                if (label.tagName === 'LABEL') {
+                    label.classList.add('task-completed'); 
+                    console.log('Added task-completed class to label:', label); 
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+        
+}
+</script>
+{% endblock scripts %}
