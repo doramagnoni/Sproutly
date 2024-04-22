@@ -1,30 +1,28 @@
+Development Challenges
+
+Challenge: Incorrect Display of To-Do Tasks Based on Due Dates
+
+Description: The To-Do list feature within my Sproutly application encountered a problem where tasks were failing to display entirely. This severely undermined the core functionality of the To-Do list as a plant care reminder system.
+
+Troubleshooting:
+
+Database Check: I verified directly within the Django admin panel that To-Do tasks were being created with the correct due dates, ensuring the problem was not with data entry itself.
+Logic Review: I carefully examined the view code responsible for retrieving and filtering To-Dos based on their due dates. This aimed to detect any potential errors in my query logic or filtering criteria.
+Debugging: I utilized print statements to directly inspect the values of due dates as they were processed by my code. This provided visibility into the data at different stages, aiding in pinpointing the discrepancy.
+Solution: The investigation revealed that the underlying issue stemmed from comparing due dates as strings rather than date objects. I implemented the necessary type conversion for accurate comparisons, enabling the correct display of To-Do tasks.
+
+Due to time limitations, the To-Do list feature within my Sproutly project is still under development. This document outlines some of the key challenges encountered and solutions implemented thus far.
 
 
-## Development Challenges
 
-* **Challenge:** Incorrect Display of To-Do Tasks Based on Due Dates**
 
-**Description:** The To-Do list feature within my Sproutly application encountered a problem where tasks were failing to display entirely. This severely undermined the core functionality of the To-Do list as a plant care reminder system.
+Challenge: Heroku Deployment Due to Root Folder Structure
 
-**Troubleshooting:** To identify the root of the issue, I followed a systematic debugging process:
+Description: During the deployment of my Sproutly project to Heroku, I encountered errors caused by an incorrectly organized project root folder. This prevented the application from starting successfully on Heroku's servers.
 
-**Database Check:** I verified directly within the Django admin panel that To-Do tasks were being created with the correct due dates, ensuring the problem was not with data entry itself.
+Troubleshooting:
 
-**Logic Review:**  I carefully examined the view code responsible for retrieving and filtering To-Dos based on their due dates.  This aimed to detect any potential errors in my query logic or filtering criteria.
+Documentation Review: I consulted Heroku's official Django deployment guides and online resources to understand their required project structure.
+Root Folder Examination: Carefully compared my project layout against the recommended structure, pinpointing any discrepancies in file placement.
+Solution: I restructured my project's root folder to align with Heroku's conventions (requirements.txt, Procfile, and wsgi.py - situated directly in the root directory). After restructuring, I redeployed the application successfully.
 
-**Debugging:** I utilized print statements to directly inspect the values of due dates as they were  processed by my code. This provided visibility into the data at different stages, aiding in pinpointing the discrepancy.
-
-**Solution:** The investigation revealed that the underlying issue stemmed from comparing due dates as strings rather than date objects.  
-
-   
-* **Challenge: Heroku Deployment Due to Root Folder Structure**
-
-   **Description:** During the deployment of my Sproutly project to Heroku, I encountered errors caused by an incorrectly organized project root folder. This prevented the application from starting successfully on Heroku's servers. 
-
-   **Troubleshooting:**
-      * **Documentation Review:** I consulted Heroku's official Django deployment guides and online resources to understand their required project structure.
-      * **Root Folder Examination:** Carefully compared my project layout against the recommended structure, pinpointing any discrepancies in file placement.
-
-   **Solution:** I restructured my project's root folder to align with Heroku's conventions. This typically involves ensuring key files (`requirements.txt`, `Procfile`, and often your Django project's `wsgi.py`) are situated directly in the root directory.  After restructuring, I redeployed the application successfully.
-
-   

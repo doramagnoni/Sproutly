@@ -254,12 +254,11 @@ table tbody td {
     overflow: hidden;  
     text-overflow: ellipsis; 
     white-space: nowrap; 
-    table-layout: fixed;
+   
 }
 
-
 .button-container { 
-    text-align: center; 
+    text-align: center !important; 
 }
 
 
