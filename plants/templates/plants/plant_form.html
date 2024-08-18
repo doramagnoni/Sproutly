@@ -21,4 +21,70 @@
             <button type="submit" class="btn btn-primary" id="save-plant-button">Save</button>
         </form>
     </div>
+
+    <style>
+        /* Styling for the form container */
+        .form-container {
+            background-color: rgba(42, 71, 57, 0.415);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            margin: 0 auto;
+            max-width: 800px; /* Adjust the max-width as needed */
+        }
+
+        /* Styling for form headings */
+        h1 {
+            color: #FCF8FF; /* Light color for headings */
+            font-weight: 600;
+        }
+
+        /* Form field styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #FCF8FF;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FCF8FF;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #ee019c;
+            outline: none;
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #ee019c;
+            border: 2px solid rgba(255, 255, 255, 0.283);
+            color: #FCF8FF;
+            padding: 12px 20px;
+            border-radius: 25px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #A0238D;
+            border-color: transparent;
+        }
+    </style>
 {% endblock %}

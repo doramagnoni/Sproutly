@@ -1,34 +1,34 @@
 {% extends 'base.html' %}
 
-{% load allauth i18n %}
+{% load i18n account %}
+
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
+    <h1>{% trans "Sign Up" %}</h1>  <!-- Replaced element h1 with standard h1 tag -->
+
     <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+        {% url 'account_login' as login_url %}
+        {% blocktrans with login_url=login_url %}
+            Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+        {% endblocktrans %}
     </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+
+    <form method="post" action="{% url 'account_signup' %}">  <!-- Standard form handling -->
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render form fields -->
+
+        {% if redirect_field_value %}
+            <input type="hidden"
+                   name="{{ redirect_field_name }}"
+                   value="{{ redirect_field_value }}" />
+        {% endif %}
+
+        <button type="submit">{% trans "Sign Up" %}</button>  <!-- Standard button tag -->
+    </form>
+
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}

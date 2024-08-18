@@ -1,59 +1,129 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container mt-5"> 
+    <style>
+        .card {
+            background-color: rgba(42, 71, 57, 0.9); /* Match your main background color */
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Match border style */
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            color: #FCF8FF; /* Text color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ee019c; /* Title color */
+        }
+
+        .card-text {
+            margin-bottom: 15px;
+        }
+
+        .list-unstyled {
+            padding-left: 0;
+            list-style: none;
+            color: #FCF8FF; /* List text color */
+        }
+
+        .list-unstyled li {
+            margin-bottom: 10px;
+        }
+
+        .card-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: rgba(42, 71, 57, 0.8); /* Match card background */
+        }
+
+        .card-actions a {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            color: #FCF8FF; /* Text color for buttons */
+        }
+
+        .card-actions .btn-primary {
+            background-color: #ee019c;
+            border: 2px solid rgba(255, 255, 255, 0.283);
+        }
+
+        .card-actions .btn-primary:hover {
+            background-color: #A0238D;
+            border-color: transparent;
+        }
+
+        .card-actions .btn-danger {
+            background-color: #dc3545;
+            border: 2px solid rgba(255, 255, 255, 0.283);
+        }
+
+        .card-actions .btn-danger:hover {
+            background-color: #c82333;
+            border-color: transparent;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .pagination .btn-outline-primary {
+            color: #ee019c;
+            border-color: #ee019c;
+        }
+
+        .pagination .btn-outline-primary:hover {
+            background-color: #ee019c;
+            color: #FCF8FF;
+            border-color: transparent;
+        }
+    </style>
+
+    <div class="container mt-5">
         <h1>My Plants</h1>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Plant Name</th>
-                    <th>Species</th>
-                    <th>Description</th> 
-                    <th>Watering Interval</th>
-                    <th>Last Watered</th> 
-                    <th>Light Requirements</th> 
-                    <th>Fertilization Interval</th> 
-                    <th>Last Fertilized</th> 
-                    <th>Image</th> 
-                    
-                </tr>
-            </thead>
+        <div class="row">
+            {% for plant in page_obj %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <!-- Removed card image section -->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ plant.name }}</h5>
+                            <p class="card-text">{{ plant.description }}</p>
+                            <ul class="list-unstyled">
+                                <li><strong>Species:</strong> {{ plant.species }}</li>
+                                <li><strong>Watering Interval:</strong> {{ plant.watering_interval }} days</li>
+                                <li><strong>Last Watered:</strong> {{ plant.last_watered }}</li>
+                                <li><strong>Light Requirements:</strong> {{ plant.light_requirements }}</li>
+                                <li><strong>Fertilization Interval:</strong> {{ plant.fertilization_interval }} days</li>
+                                <li><strong>Last Fertilized:</strong> {{ plant.last_fertilized }}</li>
+                            </ul>
+                        </div>
+                        <div class="card-actions">
+                            <a href="{% url 'edit_plant' plant.id %}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{% url 'delete_plant' plant.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this plant?');">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
 
-            <tbody>
-                {% for plant in page_obj %}
-                    <tr>
-                        <td>{{ plant.name }}</td>
-                        <td>{{ plant.species }}</td>
-                        <td>{{ plant.description }}</td>
-                        <td>{{ plant.watering_interval }} days</td>
-                        <td>
-                            <input type="date" id="last_watered_{{ plant.id }}" name="last_watered_{{ plant.id }}" value="{{ plant.last_watered }}"> 
-                        </td>
-                        <td>{{ plant.light_requirements }}</td> 
-                        <td>{{ plant.fertilization_interval }} days</td>  
-                        <td>
-                            <input type="date" id="last_fertilized_{{ plant.id }}" name="last_fertilized_{{ plant.id }}" value="{{ plant.last_fertilized }}"> 
-                        </td>
-                        <td>
-                            {% if plant.image %}
-                                <img src="{{ plant.image.url }}" alt="Picture of {{ plant.name }}" style="max-width: 100px;"> 
-                            {% else %}
-                                No image available
-                            {% endif %}
-                        </td> 
-                        <td class="button-container"> 
-                            <a href="{% url 'edit_plant' plant.id %}" class="btn btn-primary">Edit</a>
-                            <a href="{% url 'delete_plant' plant.id %}" class="btn btn-danger" onclick="return confirm('Are you absolutely sure you want to delete this plant?');">Delete</a> 
-                           </td> 
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <div class="pagination"> 
-            {% if page_obj.has_previous %} 
-                <a href="?page={{ page_obj.previous_page_number }}">Previous</a> 
+        <div class="pagination d-flex">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary">Previous</a>
             {% endif %}
 
             <span class="current">
@@ -61,7 +131,7 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary">Next</a>
             {% endif %}
         </div>
     </div>
