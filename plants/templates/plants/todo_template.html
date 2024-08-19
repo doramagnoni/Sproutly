@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -23,136 +23,121 @@
         z-index: 1 !important;
       }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">Sproutly</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="{% url 'home' %}"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'plant-guide' %}">Care Guide</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'plant_and_todo_list' %}"
-                >To-Do</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_plant' %}">Add Plant</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'plant_list' %}">My Plants</a>
-            </li>
-            {% endif %} {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-            </li>
-            {% endif %}
-          </ul>
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Sproutly</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'plant-guide' %}">Care Guide</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'plant_and_todo_list' %}">To-Do</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'add_plant' %}">Add Plant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'plant_list' %}">My Plants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- Main content -->
     <main>
-      <div class="container mt-5">
-        <h1>My Plants To-Do List</h1>
+        <div class="container mt-5">
+            <h1>My Plants To-Do List</h1>
 
-        {% for plant_data in plant_todos %}
-        <h2 class="h3">
-          {{ plant_data.plant.name }} ({{ plant_data.plant.species }})
-        </h2>
-        <p>Number of ToDos for this plant: {{ plant_data.todos.count }}</p>
+            {% for plant_data in plant_todos %}
+                <h2 class="h3">
+                    {{ plant_data.plant.name }} ({{ plant_data.plant.species }})
+                </h2>
+                <p>Number of ToDos for this plant: {{ plant_data.todos.count }}</p>
 
-        <!-- Add To-Do Button -->
-        <a
-          href="{% url 'todo_create' plant_data.plant.id %}"
-          class="btn btn-success mb-3"
-        >
-          <i class="fas fa-plus-circle"></i> Add a To-Do
-        </a>
+                <!-- Add To-Do Button -->
+                <a
+                  href="{% url 'todo_create' plant_data.plant.id %}"
+                  class="btn btn-success mb-3"
+                >
+                  <i class="fas fa-plus-circle"></i> Add a To-Do
+                </a>
 
-        <ul class="list-group">
-          {% for todo in plant_data.todos %}
-          <li class="list-group-item">
-            {{ todo.todo_type }} - Due: {{ todo.due_date }}
-            <button
-              class="task-done-btn btn btn-primary btn-sm"
-              data-task-id="{{ todo.id }}"
-            >
-              {% if todo.completed %} Completed {% else %} Mark as Complete {%
-              endif %}
-            </button>
-            <!-- Delete Button -->
-            <a
-              href="{% url 'todo_delete' todo.pk %}"
-              class="btn btn-danger btn-sm ms-2"
-            >
-              <i class="fas fa-trash-alt"></i> Delete
-            </a>
-          </li>
-          {% empty %}
-          <li class="list-group-item">No ToDos found for this plant</li>
-          {% endfor %}
-        </ul>
-        {% endfor %}
-      </div>
+                <ul class="list-group">
+                    {% for todo in plant_data.todos %}
+                        <li class="list-group-item">
+                            {{ todo.todo_type }} - Due: {{ todo.due_date }}
+                            <button class="task-done-btn btn btn-primary btn-sm" data-task-id="{{ todo.id }}">
+                                {% if todo.completed %}
+                                    Completed
+                                {% else %}
+                                    Mark as Complete
+                                {% endif %}
+                            </button>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No ToDos found for this plant</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer text-center mt-5">
-      <div class="container">
-        <p>&copy; 2024 Sproutly. All rights reserved.</p>
-        <ul class="social-media-links">
-          <li class="inline-link">
-            <a href="#">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-          </li>
-          <li class="inline-link">
-            <a href="#">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
-          </li>
-          <li class="inline-link">
-            <a href="#">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
+        <div class="container">
+            <p>&copy; 2024 Sproutly. All rights reserved.</p>
+            <ul class="social-media-links">
+                <li class="inline-link">
+                    <a href="#">
+                      <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li class="inline-link">
+                    <a href="#">
+                      <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </li>
+                <li class="inline-link">
+                    <a href="#">
+                      <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </footer>
 
     <!-- JavaScript for marking tasks as complete -->
