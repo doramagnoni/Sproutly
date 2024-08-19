@@ -98,19 +98,23 @@
 
                 <ul class="list-group">
                     {% for todo in plant_data.todos %}
-                        <li class="list-group-item">
-                            {{ todo.todo_type }} - Due: {{ todo.due_date }}
-                            <button class="task-done-btn btn btn-primary btn-sm" data-task-id="{{ todo.id }}">
-                                {% if todo.completed %}
-                                    Completed
-                                {% else %}
-                                    Mark as Complete
-                                {% endif %}
-                            </button>
-                        </li>
-                    {% empty %}
-                        <li class="list-group-item">No ToDos found for this plant</li>
-                    {% endfor %}
+                    <li class="list-group-item">
+                        {{ todo.todo_type }} - Due: {{ todo.due_date }}
+                        <button class="task-done-btn btn btn-primary btn-sm" data-task-id="{{ todo.id }}">
+                            {% if todo.completed %}
+                                Completed
+                            {% else %}
+                                Mark as Complete
+                            {% endif %}
+                        </button>
+                        <a href="{% url 'todo_delete' todo.id %}" class="btn btn-danger btn-sm ms-2">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No ToDos found for this plant</li>
+                {% endfor %}
+                
                 </ul>
             {% endfor %}
         </div>
