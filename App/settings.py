@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
     
     
+    
 ]
 
 ROOT_URLCONF = 'plants.urls' 

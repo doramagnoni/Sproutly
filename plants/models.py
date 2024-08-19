@@ -21,14 +21,18 @@ class Plant(models.Model):
 
 
 class ToDo(models.Model):
-    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
-    task_type = models.CharField(max_length=20, choices=[
-        ('WATER', 'Water'), 
-        ('FERTILIZE', 'Fertilize')
-    ])
-    last_completed = models.DateField(null=True, blank=True)  
-    due_date = models.DateField(null=True, blank=True)  
-    completed = models.BooleanField(null=False, blank=False, default=False) 
+    TODO_TYPE_CHOICES = [
+        ('watering', 'Watering'),
+        ('fertilization', 'Fertilization'),
+    ]
+
+    plant = models.ForeignKey('Plant', on_delete=models.CASCADE, related_name='todos')
+    todo_type = models.CharField(max_length=20, choices=TODO_TYPE_CHOICES, default='watering') 
+    description = models.TextField(blank=True)
+    due_date = models.DateField()
+    completed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.task_type 
+        return f"{self.todo_type.capitalize()} for {self.plant.name} on {self.due_date}"

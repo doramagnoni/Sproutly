@@ -8,9 +8,5 @@ class PlantForm(forms.ModelForm):
 
 class ToDoForm(forms.ModelForm):
     class Meta:
-        model = ToDo 
-        fields = ['plant', 'task_type', 'last_completed', 'due_date']
-        widgets = {  
-            'last_completed': forms.DateInput(attrs={'type': 'date'}),
-            'due_date': forms.DateInput(attrs={'type': 'date'})
-        }
+        model = ToDo
+        fields = ['plant', 'todo_type', 'description', 'due_date']

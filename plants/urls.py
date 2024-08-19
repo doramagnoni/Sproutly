@@ -13,6 +13,11 @@ urlpatterns = [
     path('plants/<int:pk>/edit', EditPlantView.as_view(), name='edit_plant'),
     path('plants/<int:plant_id>/delete', views.delete_plant, name='delete_plant'),
     path('plants/', views.plant_list_view, name='plant_list'),
+    
+    # ToDo-related URLs
+    path('plants/<int:plant_id>/todos/new/', views.todo_create, name='todo_create'),  
+    path('todos/<int:pk>/edit/', views.todo_update, name='todo_update'),
+    path('todos/<int:pk>/delete/', views.todo_delete, name='todo_delete'),
 
     # Home and other informational pages
     path('', views.home_view, name='home'),
