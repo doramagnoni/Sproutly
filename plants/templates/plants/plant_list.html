@@ -95,44 +95,50 @@
     <div class="container mt-5">
         <h1>My Plants</h1>
 
-        <div class="row">
-            {% for plant in page_obj %}
-                <div class="col-md-4">
-                    <div class="card">
-                        <!-- Removed card image section -->
-                        <div class="card-body">
-                            <h5 class="card-title">{{ plant.name }}</h5>
-                            <p class="card-text">{{ plant.description }}</p>
-                            <ul class="list-unstyled">
-                                <li><strong>Species:</strong> {{ plant.species }}</li>
-                                <li><strong>Watering Interval:</strong> {{ plant.watering_interval }} days</li>
-                                <li><strong>Last Watered:</strong> {{ plant.last_watered }}</li>
-                                <li><strong>Light Requirements:</strong> {{ plant.light_requirements }}</li>
-                                <li><strong>Fertilization Interval:</strong> {{ plant.fertilization_interval }} days</li>
-                                <li><strong>Last Fertilized:</strong> {{ plant.last_fertilized }}</li>
-                            </ul>
-                        </div>
-                        <div class="card-actions">
-                            <a href="{% url 'edit_plant' plant.id %}" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="{% url 'delete_plant' plant.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this plant?');">Delete</a>
+        {% if page_obj.paginator.count == 0 %}
+            <div class="alert alert-info">
+                You don't have any plants yet. <a href="{% url 'add_plant' %}">Add a plant</a> to start managing your plant care.
+            </div>
+        {% else %}
+            <div class="row">
+                {% for plant in page_obj %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <!-- Removed card image section -->
+                            <div class="card-body">
+                                <h5 class="card-title">{{ plant.name }}</h5>
+                                <p class="card-text">{{ plant.description }}</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>Species:</strong> {{ plant.species }}</li>
+                                    <li><strong>Watering Interval:</strong> {{ plant.watering_interval }} days</li>
+                                    <li><strong>Last Watered:</strong> {{ plant.last_watered }}</li>
+                                    <li><strong>Light Requirements:</strong> {{ plant.light_requirements }}</li>
+                                    <li><strong>Fertilization Interval:</strong> {{ plant.fertilization_interval }} days</li>
+                                    <li><strong>Last Fertilized:</strong> {{ plant.last_fertilized }}</li>
+                                </ul>
+                            </div>
+                            <div class="card-actions">
+                                <a href="{% url 'edit_plant' plant.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{% url 'delete_plant' plant.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this plant?');">Delete</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
 
-        <div class="pagination d-flex">
-            {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary">Previous</a>
-            {% endif %}
+            <div class="pagination d-flex">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary">Previous</a>
+                {% endif %}
 
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-            </span>
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
 
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary">Next</a>
-            {% endif %}
-        </div>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary">Next</a>
+                {% endif %}
+            </div>
+        {% endif %}
     </div>
 {% endblock content %}
