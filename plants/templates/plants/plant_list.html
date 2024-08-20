@@ -126,7 +126,11 @@
                             </div>
                             <div class="card-actions">
                                 <a href="{% url 'edit_plant' plant.id %}" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{% url 'delete_plant' plant.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this plant?');">Delete</a>
+                            
+                                <form action="{% url 'delete_plant' plant.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this plant?');">Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
