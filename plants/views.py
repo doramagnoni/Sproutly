@@ -43,7 +43,7 @@ def add_plant(request):
         form = PlantForm()
     return render(request, 'plants/plant_form.html', {'form': form})
 
-@login_required
+
 def home_view(request):
     return render(request, 'plants/index.html') 
 

@@ -49,11 +49,13 @@
 </section>
 
 
+{% if not user.is_authenticated %}
 <section class="cta text-center my-5">
     <div class="container">
-       <h2>So, are you ready to begin? Grab your watering can and sign up!</h2>
-       <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up Now</a>
+        <h2>So, are you ready to begin? Grab your watering can and sign up!</h2>
+        <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up Now</a>
     </div>
- </section>
+</section>
+{% endif %}
 
 {% endblock %}

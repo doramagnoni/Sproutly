@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block content %}  
+{% block content %}
     <div class="container mt-5"> 
         {% if form.instance.id %} 
             <h1>Edit Plant</h1> 
@@ -22,7 +22,34 @@
         </form>
     </div>
 
+    <!-- Include jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script>
+        $(function() {
+            // Apply the datepicker to the date fields
+            $('#id_last_watered, #id_last_fertilized').datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+
     <style>
+
+        /* jQuery UI Datepicker styling */
+        .ui-datepicker {
+            background: #FCF8FF;
+            border: 1px solid #A0238D;
+            color: #333333;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+
         /* Styling for the form container */
         .form-container {
             background-color: rgba(42, 71, 57, 0.415);
