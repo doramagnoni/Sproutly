@@ -73,8 +73,6 @@ Task Form: Interface for creating or updating tasks related to plant care.
 
 The wireframes were created using Balsamiq, focusing on the functionality and user flow of the site.
 
-
-
 ## 🌱 User Stories
 
 \*As a user, I want to create an account so that I can have a personalized experience.
@@ -282,6 +280,15 @@ Result: The login form displayed an error message, and the login attempt failed.
 Fix: N/A – The feature worked as expected.
 
 **Test Results:** Our current tests pass successfully, giving us confidence in the stability of Sproutly's core features. We are committed to expanding our test coverage as we add new functionalities.
+
+
+## 🔧🐛 Troubleshooting
+
+*Image Upload and Display:
+Due to time constraints and technical challenges, the integration of Cloudinary for image upload and management was not completed. As a result, the image upload functionality has been temporarily removed from the application. This includes:
+
+1. Excluding the image field from the PlantForm, preventing users from uploading images when adding or editing plants.
+2. Removing the image display logic from the templates, so placeholder images or no images are shown instead.
 
 ## 🗄️ Deployment Write-up
 
