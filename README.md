@@ -6,13 +6,15 @@
 
 Forget messy plant care notes and missed watering schedules! Sproutly is for plant lovers who want to nurture their indoor garden effortlessly. Get organized, receive timely reminders, and see your plant friends thrive.
 
+You can try out a live demo of Sproutly deployed on Heroku here: https://sproutly-30d053e33e11.herokuapp.com/
+
 ## ✨ Core Features
 
 - **Plant Profiles:** Add each plant to your collection, tracking:
   - Add each plant with name, species, and light needs ☀️
   - Set custom watering schedules 💧
   - Track fertilization needs for extra happy plants 🌱
-  - Upload photos to see them grow 📸
+  
 - **Actionable To-Do List:** Never miss a crucial care task with a clear overview of upcoming watering and fertilization reminders.
 - **Intuitive Interface:** Designed for plant enthusiasts of all skill levels, prioritizing ease of use and a gentle learning curve.
 
@@ -30,6 +32,48 @@ Sproutly aims to provide a straightforward and enjoyable experience for plant en
 Plant Management Made Easy: Adding new plants and setting up watering/fertilizing reminders is designed to be quick and intuitive.
 Clear Task Overview: The to-do list provides a satisfying visual display of your plant care schedule, helping you stay on top of your plants' needs.
 Focus on Well-being: A calming color palette and emphasis on successful task completion aims to make plant care a positive and rewarding part of your routine.
+
+## 📸 Screenshots
+To provide a visual overview of the application's interface, here are some screenshots showcasing the design and functionality on both desktop and mobile devices.
+
+![Screenshot 2024-08-21 at 11 06 52](https://github.com/user-attachments/assets/11d9dd32-a203-4171-a1f5-bea178df80f4)
+![Screenshot 2024-08-21 at 11 11 27](https://github.com/user-attachments/assets/6db2f2d8-56dc-4e6d-8f5e-94c2dc9b4727)
+![Screenshot 2024-08-21 at 11 14 22](https://github.com/user-attachments/assets/d6ac780e-bab5-4e9b-ba27-21996162fb27)
+![Screenshot 2024-08-21 at 11 15 37](https://github.com/user-attachments/assets/47dbfc1d-943d-4c93-9cf8-b3d38d26546d)
+
+
+## 🌱 Diagrams and Wireframes
+
+**Database Schema**
+The database schema for this project is designed to handle the core functionalities of the application, including user management, plant tracking, and task management. The main entities include:
+
+User: Represents users of the application, managed by Django's built-in authentication system.
+Plant: Captures details about each plant, including its name, species, care instructions, and associated user.
+ToDo: Tracks tasks related to each plant, such as watering or fertilization, along with their completion status.
+Below is a visual representation of the database schema, showing the relationships between these models:
+
+![Screenshot 2024-08-21 at 11 22 19](https://github.com/user-attachments/assets/8a7e378a-7e1f-435a-9303-cb51616a3a90)
+
+
+![Screenshot 2024-08-21 at 11 22 44](https://github.com/user-attachments/assets/fbebaf10-5fee-4c81-8fdd-ebe9184eb722)
+
+**Wireframes**
+Wireframes were created during the design phase to plan the layout and structure of the application. These wireframes provide a blueprint for the user interface, ensuring a user-friendly experience across the different pages of the site.
+
+Key wireframes include:
+
+Home Page: Overview of the application with quick links to key features.
+Plant List: Displays all plants associated with the logged-in user.
+ToDo List: Lists tasks related to plant care, allowing users to manage and track their completion.
+Plant Form: Interface for adding or editing plant details.
+Task Form: Interface for creating or updating tasks related to plant care.
+
+![Wireframe](https://github.com/user-attachments/assets/316980b7-485c-48d5-85fd-b1cb258fcdb6)
+![Wireframe2](https://github.com/user-attachments/assets/6b8f58bc-c57a-42fd-9f07-ce339158c7ea)
+
+The wireframes were created using Balsamiq, focusing on the functionality and user flow of the site.
+
+
 
 ## 🌱 User Stories
 
@@ -90,7 +134,7 @@ Links to each plant’s detailed view are available.
 Priority: Medium
 Acceptance Criteria:
 An edit button is available on the plant detail page.
-The user can update the plant’s name, species, care intervals.
+The user can update the plant’s name, species, and care intervals.
 Changes are saved and reflected immediately on the plant detail page.
 
 \*As a user, I want to delete a plant from my collection so that I can remove plants I no longer own.
@@ -190,7 +234,7 @@ Result: The user was successfully registered and redirected to the homepage. The
 
 Fix: N/A – The feature worked as expected.
 
-Test Case: Signup with Invalid Password
+Test Case: Signup with an Invalid Password
 
 Expected: If the passwords entered in the signup form do not match, the user should receive an error message, and the form should not be submitted.
 
