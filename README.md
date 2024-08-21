@@ -6,6 +6,8 @@
 
 Forget messy plant care notes and missed watering schedules! Sproutly is for plant lovers who want to nurture their indoor garden effortlessly. Get organized, receive timely reminders, and see your plant friends thrive.
 
+You can try out a live demo of Sproutly deployed on Heroku here: https://sproutly-30d053e33e11.herokuapp.com/
+
 ## ✨ Core Features
 
 - **Plant Profiles:** Add each plant to your collection, tracking:
