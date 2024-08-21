@@ -105,24 +105,17 @@
                 {% for plant in page_obj %}
                     <div class="col-md-4">
                         <div class="card">
-                            <!-- Image section -->
-                            {% if plant.image %}
-                                <img src="{{ plant.image.url }}" alt="{{ plant.name }}" class="card-img-top">
-                            {% else %}
-                                <img src="{% static 'plant_images/default_plant.jpg' %}" alt="Default Image" class="card-img-top">
-                            {% endif %}
-                            
                             <div class="card-body">
                                 <h5 class="card-title">{{ plant.name }}</h5>
                                 <p class="card-text">{{ plant.description }}</p>
-<ul class="list-unstyled">
-    <li><strong>Species:</strong> {{ plant.species }}</li>
-    <li><strong>Watering Interval:</strong> {{ plant.watering_interval }} days</li>
-    <li><strong>Last Watered:</strong> {{ plant.last_watered|date:"F j, Y" }}</li>
-    <li><strong>Light Requirements:</strong> {{ plant.light_requirements }}</li>
-    <li><strong>Fertilization Interval:</strong> {{ plant.fertilization_interval }} days</li>
-    <li><strong>Last Fertilized:</strong> {{ plant.last_fertilized|date:"F j, Y" }}</li>
-</ul>
+                                <ul class="list-unstyled">
+                                    <li><strong>Species:</strong> {{ plant.species }}</li>
+                                    <li><strong>Watering Interval:</strong> {{ plant.watering_interval }} days</li>
+                                    <li><strong>Last Watered:</strong> {{ plant.last_watered|date:"F j, Y" }}</li>
+                                    <li><strong>Light Requirements:</strong> {{ plant.light_requirements }}</li>
+                                    <li><strong>Fertilization Interval:</strong> {{ plant.fertilization_interval }} days</li>
+                                    <li><strong>Last Fertilized:</strong> {{ plant.last_fertilized|date:"F j, Y" }}</li>
+                                </ul>
                             </div>
                             <div class="card-actions">
                                 <a href="{% url 'edit_plant' plant.id %}" class="btn btn-primary btn-sm">Edit</a>
